@@ -1,0 +1,62 @@
+{% extends "newbase.html" %}
+{% load static %}
+{% load humanize %}
+{% block title %}
+{{Title}}
+{% endblock title %}
+{% block container %}
+<!-- Contact Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 mb-5 justify-content-center wow fadeInUp" data-wow-delay="0.1s">
+            <div class="col-lg-6">
+                <h1 class="display-6">Register</h1>
+            </div>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-5 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="img-fluid animated pulse infinite" style="animation-duration: 3s;" src="{% static 'img/hero-2.png' %}" alt="">
+            </div>
+            <div class="col-lg-7 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <p class="mb-4">Fill in the fields.</p>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                {{ form.full_name }} <br> {{ form.full_name.errors }}
+                                <label for="{{ form.full_name.id_for_label }}">Full Name</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            {% comment %} {{ form.username.errors }} {% endcomment %}
+                            <div class="form-floating">
+                                {{ form.username }} <br> {{ form.username.errors }}
+                                <label for="{{ form.username.id_for_label }}">Username</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            {% comment %} {{ form.email.errors }} {% endcomment %}
+                            <div class="form-floating">
+                                {{ form.email }} <br> {{ form.email.errors }}
+                                <label for="{{ form.email.is_for_label }}">Your Email</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            {% comment %} {{ form.password.errors }} {% endcomment %}
+                            <div class="form-floating">
+                                {{ form.password }} <br> {{ form.password.errors }}
+                                <label for="{{ form.password.id_for_password }}">Password</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary py-3 px-4" type="submit">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+{% endblock container %}
