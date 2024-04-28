@@ -5,7 +5,7 @@ from .models import PaymentRequest
 class UserAccountForm(forms.ModelForm):
     phone_number = forms.CharField(label=('Phone Number'), widget=forms.TextInput(attrs={'class':'form-control'}))
     pin = forms.CharField(label=('Pin'), widget=forms.NumberInput(attrs={'class':'form-control'}))
-    address = forms.CharField(label=('Address'), widget=forms.Textarea(attrs={'class':'form-control','row':'1'}))
+    address = forms.CharField(label=('Address'), widget=forms.Textarea(attrs={'class':'form-control','rows':3, 'cols':50}))
     profile_pix = forms.CharField(label=('Profile Picture'), widget=forms.FileInput(attrs={'class':'form-control'}))
     class Meta:
         model = models.UserAccount

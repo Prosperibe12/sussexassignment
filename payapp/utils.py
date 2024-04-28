@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import requests 
 
+from decouple import config
 from register.models import Users, UserAccount
 from payapp.models import Transaction
 
@@ -29,7 +30,7 @@ def api_currency_converter(amount, currency1, currency2):
     make a get request to API Webservice
     """
     # base URL of your API
-    base_url = 'http://localhost:8000/api/'
+    base_url = config('LOCAL_URL')
 
     # Make the GET request to the endpoint
     response = requests.get(f'{base_url}conversion/{currency1}/{currency2}/{amount}/')

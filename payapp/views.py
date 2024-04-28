@@ -19,12 +19,12 @@ class DashBoard(LoginRequiredMixin, View):
     
     def get(self, request):
         # validates if user has updated profile page or send to profile page
-        user_updated = models.UserAccount.objects.filter(user=request.user)
-        if not user_updated:
+        try:
+            user_updated = models.UserAccount.objects.get(user=request.user)
+        except:
+        # if not user_updated:
             return redirect('profile')
-        
-        # get user acct profile
-        user_acct = request.user.useraccount 
+
         # get user transactions
         trans = Transaction.objects.filter(Q(Initiator=request.user) | Q(Receiver=request.user)).order_by('-Transaction_id')[:10]
         # get payment requests
@@ -33,7 +33,7 @@ class DashBoard(LoginRequiredMixin, View):
         notification = payments.filter(Q(Transaction_status='Rejected') | Q(Transaction_status='Completed'),Initiator=request.user)[:6]
         context = {
             "Title": "Dashboard",
-            "acct": user_acct,
+            "acct": user_updated,
             "trans": trans,
             "payments": payment,
             "chats": notification
@@ -50,12 +50,10 @@ class Userprofile(LoginRequiredMixin, View):
     form_class = forms.UserAccountForm()
     
     def get(self, request):
-        # get user acct profile
-        user_acct = request.user.useraccount
+
         context = {
             "Title": "Profile",
-            "form": self.form_class,
-            "acct": user_acct
+            "form": self.form_class
         }
         return render(request, 'dashboard/profile.html', context)
     
