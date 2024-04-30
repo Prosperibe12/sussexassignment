@@ -30,29 +30,43 @@ To run WebApp locally, follow these steps:
 2. Navigate to the project directory:
 
     ```bash
-    cd webapps2024
+    cd <cloned directory>
     ```
 
-3. Install the project dependencies using pip:
+3. Install Virtual Environment:
+
+    ```bash
+    python -m venv venv
+    ```
+
+4. Activate Virtual Environment:
+
+    ```bash
+    Windows: . venv/Scripts/activate 
+    Linux: source venv/bin/activate
+    ```
+
+5. Install the project dependencies using pip:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-4. Run the following command to apply migrations:
+6. Run the following command to apply migrations:
 
     ```bash
+    python manage.py makemigrations 
     python manage.py migrate
     ```
 
-5. Start the development server:
+7. Start the development server:
 
     ```bash
     python manage.py runserver
     ```
 
-6. Open your web browser and go to [http://127.0.0.1:8000/](http://127.0.0.1:8000/) to view the project.
+8. Open your web browser and go to [http://127.0.0.1:8000/]  to view the project.
 
-- If you encounter any issues or have questions, feel free to reach out to the project maintainer.
+- If you encounter any issues or have questions, feel free to reach out to me.
 
 
